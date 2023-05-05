@@ -1,7 +1,9 @@
 import MongoDB from 'mongodb'
 import { ObjectId } from 'mongodb'
+import * as dotenv from 'dotenv'
+dotenv.config({ path: 'variables.env' })
 
-const client = new MongoDB.MongoClient('mongodb://127.0.0.1:27017')
+const client = new MongoDB.MongoClient(process.env.DB_URL)
 
 async function traerPorUsuario (id) {
     return client.connect()
