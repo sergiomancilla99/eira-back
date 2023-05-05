@@ -1,4 +1,6 @@
 import nodemailer from 'nodemailer'
+import * as dotenv from 'dotenv'
+dotenv.config({ path: 'variables.env' })
 
 async function enviarNotificacionMail(email) {
     let transporter = nodemailer.createTransport({
@@ -6,8 +8,8 @@ async function enviarNotificacionMail(email) {
         port: 465,
         secure: true,
         auth: {
-          user: "eirainformacion@gmail.com",
-          pass: "ahdhabdhybywluwi",
+          user: process.env.MAIL_USER,
+          pass: process.env.MAIL_PASSWORD,
         },
         tls: {
             rejectUnauthorized: false
@@ -15,7 +17,7 @@ async function enviarNotificacionMail(email) {
       });
 
       let info = await transporter.sendMail({
-        from: 'No olvides tomar tu medicamento <eirainformacion@gmail.com>',
+        from: 'No olvides tomar tu medicamento <eiraappinformacion@gmail.com>',
         to: email,
         subject: "Recordatorio",
         html: "<b>No olvides tomar tu medicamento IBUPROFENO 300mg a las 20.00hs</b>",
@@ -29,8 +31,8 @@ async function enviarToken(email, token) {
     host: "smtp.gmail.com",
     port: 465,
     auth: {
-      user: "eirainformacion@gmail.com",
-      pass: "ahdhabdhybywluwi",
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASSWORD,
     },
     tls: {
         rejectUnauthorized: false
@@ -38,7 +40,7 @@ async function enviarToken(email, token) {
   });
 
   let info = await transporter.sendMail({
-      from: '"Eira" <eirainformacion@gmail.com>',
+      from: '"Eira" <eiraappinformacion@gmail.com>',
       to: `${email}`,
       subject: "Recuperar Contraseña",
       html: `Este es tu link para recuperar la contraseña. Tené en cuenta que una vez que lo uses no podrás reutilizarlo. <br/>Hace <a href="http://localhost:3000/recuperarContrasena/${token}/${email}">click aquí</a> para cambiar la contraseña`,
@@ -53,8 +55,8 @@ async function contrasenaRecuperada(email) {
     host: "smtp.gmail.com",
     port: 465,
     auth: {
-      user: "eirainformacion@gmail.com",
-      pass: "ahdhabdhybywluwi",
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASSWORD,
     },
     tls: {
         rejectUnauthorized: false
@@ -62,10 +64,10 @@ async function contrasenaRecuperada(email) {
   });
 
   let info = await transporter.sendMail({
-      from: '"Eira" <eirainformacion@gmail.com>',
+      from: '"Eira" <eiraappinformacion@gmail.com>',
       to: `${email}`,
       subject: "Tu contraseña fue cambiada",
-      html: `Tu contraseña fue cambiada exitosamente.<br/> Si vos no hiciste el cambio contactanos a eirainformacion@gmail.com`,
+      html: `Tu contraseña fue cambiada exitosamente.<br/> Si vos no hiciste el cambio contactanos a eiraappinformacion@gmail.com`,
   });
 
   console.log("Message sent: %s", info.messageId);
@@ -77,8 +79,8 @@ async function avisoValidarMatricula(medico) {
     host: "smtp.gmail.com",
     port: 465,
     auth: {
-      user: "eirainformacion@gmail.com",
-      pass: "ahdhabdhybywluwi",
+      user: process.env.MAIL_USER,
+       pass: process.env.MAIL_PASSWORD,
     },
     tls: {
         rejectUnauthorized: false
@@ -86,8 +88,8 @@ async function avisoValidarMatricula(medico) {
   });
 
   let info = await transporter.sendMail({
-      from: '"Eira" <eirainformacion@gmail.com>',
-      to: 'eirainformacion@gmail.com',
+      from: '"Eira" <eiraappinformacion@gmail.com>',
+      to: 'eiraappinformacion@gmail.com',
       subject: "Se registró un nuevo médico - Validar matrícula",
       html: `Se registró el médico <b>${medico.nombre} ${medico.apellido}</b> con número de matrícula: <b>${medico.matricula}</b>.<br>Validar matrícula para que el médico pueda hacer uso de la app.`,
   });
@@ -101,8 +103,8 @@ async function avisoMedicoVerificacion(medico) {
     host: "smtp.gmail.com",
     port: 465,
     auth: {
-      user: "eirainformacion@gmail.com",
-      pass: "ahdhabdhybywluwi",
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASSWORD,
     },
     tls: {
         rejectUnauthorized: false
@@ -118,11 +120,11 @@ async function avisoMedicoVerificacion(medico) {
   } else {
     asunto = "Hubo un problema con la verificación de tu matrícula"
     texto = `Hola ${medico.nombre} ${medico.apellido}, tuvimos problemas para poder verificar tu matrícula. Por favor, ponete en contacto en nosotros para poder resolver el problema lo antes posbile.<br>
-    Escirbinos un mail con el asunto "No se verificó mi matrícula" a <a href="mailto:eirainformacion@gmail.com" target="_blank">eirainformacion@gmail.com</a>`
+    Escirbinos un mail con el asunto "No se verificó mi matrícula" a <a href="mailto:eiraappinformacion@gmail.com" target="_blank">eiraappinformacion@gmail.com</a>`
   }
 
   let info = await transporter.sendMail({
-      from: '"Eira" <eirainformacion@gmail.com>',
+      from: '"Eira" <eiraappinformacion@gmail.com>',
       to: medico.email,
       subject: asunto,
       html: texto,
@@ -137,8 +139,8 @@ async function pedidoReceta(email, paciente) {
     host: "smtp.gmail.com",
     port: 465,
     auth: {
-      user: "eirainformacion@gmail.com",
-      pass: "ahdhabdhybywluwi",
+      user: process.env.MAIL_USER,
+       pass: process.env.MAIL_PASSWORD,
     },
     tls: {
         rejectUnauthorized: false
@@ -146,7 +148,7 @@ async function pedidoReceta(email, paciente) {
   });
 
   let info = await transporter.sendMail({
-      from: '"Eira" <eirainformacion@gmail.com>',
+      from: '"Eira" <eiraappinformacion@gmail.com>',
       to: `${email}`,
       subject: "Pedido de Receta",
       html: `El paciente <strong>${paciente}</strong> hizo un pedido de receta. Iniciá sesión y visitá la sección de recetas para poder ver el listado de pedidos.`,
@@ -161,8 +163,8 @@ async function envioReceta(email, nombre) {
     host: "smtp.gmail.com",
     port: 465,
     auth: {
-      user: "eirainformacion@gmail.com",
-      pass: "ahdhabdhybywluwi",
+      user: process.env.MAIL_USER,
+       pass: process.env.MAIL_PASSWORD,
     },
     tls: {
         rejectUnauthorized: false
@@ -170,7 +172,7 @@ async function envioReceta(email, nombre) {
   });
 
   let info = await transporter.sendMail({
-      from: '"Eira" <eirainformacion@gmail.com>',
+      from: '"Eira" <eiraappinformacion@gmail.com>',
       to: `${email}`,
       subject: "Envío de Receta",
       html: `¡Hola ${nombre}! El médico cargó la receta que pediste. Iniciá sesión y visitá la sección de recetas para poder verla.`,
@@ -185,8 +187,8 @@ async function contactoWeb(email, nombre, mensaje) {
     host: "smtp.gmail.com",
     port: 465,
     auth: {
-      user: "eirainformacion@gmail.com",
-      pass: "ahdhabdhybywluwi",
+      user: process.env.MAIL_USER,
+       pass: process.env.MAIL_PASSWORD,
     },
     tls: {
         rejectUnauthorized: false
@@ -194,8 +196,8 @@ async function contactoWeb(email, nombre, mensaje) {
   });
 
   let info = await transporter.sendMail({
-      from: '"Eira" <eirainformacion@gmail.com>',
-      to: "eirainformacion@gmail.com",
+      from: '"Eira" <eiraappinformacion@gmail.com>',
+      to: "eiraappinformacion@gmail.com",
       subject: "Contacto desde la web",
       html: `<strong>${nombre}</strong> se contactó desde la web.<br/>Email: <strong>${email}</strong><br/> Mensaje:<br/>${mensaje}`,
   });
