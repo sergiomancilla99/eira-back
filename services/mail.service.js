@@ -43,7 +43,7 @@ async function enviarToken(email, token) {
       from: '"Eira" <eiraappinformacion@gmail.com>',
       to: `${email}`,
       subject: "Recuperar Contraseña",
-      html: `Este es tu link para recuperar la contraseña. Tené en cuenta que una vez que lo uses no podrás reutilizarlo. <br/>Hace <a href="http://localhost:3000/recuperarContrasena/${token}/${email}">click aquí</a> para cambiar la contraseña`,
+      html: `Este es tu link para recuperar la contraseña. Tené en cuenta que una vez que lo uses no podrás reutilizarlo. <br/>Hace <a href="https://eira.ar/recuperarContrasena/${token}/${email}">click aquí</a> para cambiar la contraseña`,
   });
 
   console.log("Message sent: %s", info.messageId);

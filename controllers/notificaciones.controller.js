@@ -17,7 +17,7 @@ function enviarNotificacionFB(req, res) {
         "notification": {
             "title": "Recordatorio",
             "body": "Test push notification",
-            "click_action": "http://localhost:3000/",
+            "click_action": "https://eira.ar",
             "icon": "https://i.imgur.com/5zO5cce.png"
         },
         "to": `${req.body.tokenFB}`

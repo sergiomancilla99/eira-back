@@ -24,7 +24,7 @@ app.use(helmet())
 const server = createServer(app) // crea el server
 const serverSocket = new SocketIO.Server(server, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: 'https://eira.ar',
         methods: ['GET', 'POST']
     },
     trasport: ['websocket']
@@ -91,7 +91,7 @@ const host = process.env.HOST || '0.0.0.0'
 const puerto = process.env.PORT || 2020
 
 server.listen(puerto, function() {
-    console.log("Conectado a http://localhost:2020")
+    console.log("Conectado a puerto", puerto)
 }) 
 
 
