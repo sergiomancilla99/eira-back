@@ -13,7 +13,7 @@ const uploadImg = multer({
         destination: join(currrentDir, '/public/imgs/recetas'),
         filename: (req, file, cb) => {
             const fileExtension = extname(file.originalname)
-            const fileName = file.originalname.split(fileExtension)[0]
+            const fileName = file.originalname.split(fileExtension)[1]
 
             cb(null, `${Date.now()}-${fileName}${fileExtension}`)
         }
