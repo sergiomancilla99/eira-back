@@ -46,9 +46,7 @@ async function editar (id, usuario) {
         if(recetas) {
             for(let receta of recetas) {
                 for(let info of receta.recetas) {
-                    if(info.idPaciente == id) {
-                        await db.collection('recetas').updateMany({'recetas.idPaciente': ObjectId(id)}, {$set: {'recetas.$': {'idPaciente': new ObjectId(id), 'paciente': usuario.nombre + ' ' + usuario.apellido, 'obraSocial': usuario.obraSocial, 'afiliado': usuario.afiliado, 'medicamento': info.medicamento, 'enviado': info.enviado}}})
-                    }
+                    await db.collection('recetas').updateOne({'recetas.id': info.id}, {$set: {'recetas.$': {'id': info.id, 'idPaciente': new ObjectId(id), 'paciente': usuario.nombre + ' ' + usuario.apellido, 'obraSocial': usuario.obraSocial, 'afiliado': usuario.afiliado, 'medicamento': info.medicamento, 'enviado': info.enviado, 'imagen': info.imagen}}})
                 }
             }
         }
