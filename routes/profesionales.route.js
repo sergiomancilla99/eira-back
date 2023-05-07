@@ -16,7 +16,6 @@ const uploadImg = multer({
             const fileName = file.originalname.split(fileExtension)[0]
 
             cb(null, `${Date.now()}-${fileName}${fileExtension}`)
-            console.log('Carpeta de destino: ' + path.resolve('public/imgs/recetas'));
         }
     }),
     fileFilter: (req, file, cb) => {
