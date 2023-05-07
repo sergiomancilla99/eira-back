@@ -130,10 +130,11 @@ async function enviarReceta({file, posicion}) {
         let update = {
             $set: {}
         }
+        console.log(posicion)
         update.$set[`recetas.${posicion}.imagen`] =`${file.filename}`
         update.$set[`recetas.${posicion}.enviado`] = true
         const pedidos = await db.collection('recetas').updateOne(
-            { "medico": ObjectId("6376b8cb7afdbb7ae6f3a992")},
+            { "medico": new ObjectId("645590c1375aaa53c087d0fc")},
             update
         )
         return pedidos

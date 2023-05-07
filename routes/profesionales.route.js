@@ -13,7 +13,7 @@ const uploadImg = multer({
         destination: join(currrentDir, '/public/imgs/recetas'),
         filename: (req, file, cb) => {
             const fileExtension = extname(file.originalname)
-            const fileName = file.originalname.split(fileExtension)[1]
+            const fileName = file.originalname.split(fileExtension)[0]
 
             cb(null, `${Date.now()}-${fileName}${fileExtension}`)
         }
@@ -37,6 +37,7 @@ route.get('/api/profesionales/:id/pacientes', [autenticacion, medicoVerificado],
 route.delete('/api/profesionales/:idProfesional/pacientes/:idPaciente', [autenticacion, medicoVerificado], ProfesionalesController.eliminarPaciente)
 route.patch('/api/profesionales/verificacion/:id', [autenticacion, administrador], ProfesionalesController.verificarMedico)
 route.get('/api/recetas/:id', [autenticacion, medicoVerificado], ProfesionalesController.traerPedidosRecetas)
-route.post('/api/recetas', [uploadImg.single('imagen'), autenticacion, medicoVerificado], ProfesionalesController.enviarReceta)
+// route.post('/api/recetas', [uploadImg.single('imagen'), autenticacion, medicoVerificado], ProfesionalesController.enviarReceta)
+route.post('/api/recetas', [uploadImg.single('imagen')], ProfesionalesController.enviarReceta)
 
 export default route
