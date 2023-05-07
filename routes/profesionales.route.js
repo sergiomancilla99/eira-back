@@ -10,12 +10,13 @@ const mimetypes = ['image/jpeg', 'image/png']
 
 const uploadImg = multer({
     storage: multer.diskStorage({
-        destination: join(currrentDir, '../public/imgs/recetas'),
+        destination: join(__dirname, '../public/imgs/recetas'),
         filename: (req, file, cb) => {
             const fileExtension = extname(file.originalname)
             const fileName = file.originalname.split(fileExtension)[0]
 
             cb(null, `${Date.now()}-${fileName}${fileExtension}`)
+            console.log('Carpeta de destino: ' + path.resolve('public/imgs/recetas'));
         }
     }),
     fileFilter: (req, file, cb) => {
