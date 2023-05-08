@@ -144,6 +144,27 @@ async function enviarReceta({file, posicion}) {
     })
 }
 
+async function urlFile(urlFile, posicion, idMedico) {
+    return client.connect()
+    .then(async function() {
+        const db = client.db('eira')
+        let update = {
+            $set: {}
+        }
+        console.log(posicion)
+        update.$set[`recetas.${posicion}.imagen`] =`${urlFile}`
+        update.$set[`recetas.${posicion}.enviado`] = true
+        const pedidos = await db.collection('recetas').updateOne(
+            { "medico": new ObjectId(idMedico)},
+            update
+        )
+        return pedidos
+    })
+    .catch(function(err) {
+        console.log(err)
+    })
+}
+
 export {
     traerTodos,
     traerPorId,
@@ -153,6 +174,7 @@ export {
     eliminarPaciente,
     verificarMedico,
     traerPedidosRecetas,
-    enviarReceta
+    enviarReceta,
+    urlFile
 
 }

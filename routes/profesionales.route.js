@@ -7,14 +7,15 @@ import { fileURLToPath } from 'url'
 
 const currrentDir = dirname(fileURLToPath(import.meta.url))
 const mimetypes = ['image/jpeg', 'image/png']
+const parentDir = dirname(currrentDir)
 
 const uploadImg = multer({
     storage: multer.diskStorage({
-        destination: join(currrentDir, '../public/imgs/recetas'),
+        destination: join(parentDir, 'public/uploads'),
         filename: (req, file, cb) => {
             const fileExtension = extname(file.originalname)
             const fileName = file.originalname.split(fileExtension)[0]
-
+            console.log('currentDIr', parentDir)
             cb(null, `${Date.now()}-${fileName}${fileExtension}`)
         }
     }),
@@ -38,6 +39,7 @@ route.delete('/api/profesionales/:idProfesional/pacientes/:idPaciente', [autenti
 route.patch('/api/profesionales/verificacion/:id', [autenticacion, administrador], ProfesionalesController.verificarMedico)
 route.get('/api/recetas/:id', [autenticacion, medicoVerificado], ProfesionalesController.traerPedidosRecetas)
 // route.post('/api/recetas', [uploadImg.single('imagen'), autenticacion, medicoVerificado], ProfesionalesController.enviarReceta)
-route.post('/api/recetas', [uploadImg.single('imagen')], ProfesionalesController.enviarReceta)
+//route.post('/api/recetas', [uploadImg.single('imagen')], ProfesionalesController.enviarReceta)
+route.post('/api/recetas/urlFile', [autenticacion, medicoVerificado], ProfesionalesController.urlFile)
 
 export default route
