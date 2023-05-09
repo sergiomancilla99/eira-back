@@ -40,6 +40,6 @@ route.patch('/api/profesionales/verificacion/:id', [autenticacion, administrador
 route.get('/api/recetas/:id', [autenticacion, medicoVerificado], ProfesionalesController.traerPedidosRecetas)
 // route.post('/api/recetas', [uploadImg.single('imagen'), autenticacion, medicoVerificado], ProfesionalesController.enviarReceta)
 //route.post('/api/recetas', [uploadImg.single('imagen')], ProfesionalesController.enviarReceta)
-route.post('/api/recetas/urlFile', [autenticacion, medicoVerificado], ProfesionalesController.urlFile)
+route.post('/api/recetas/urlFile', ProfesionalesController.urlFile)
 
 export default route
