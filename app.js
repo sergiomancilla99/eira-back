@@ -18,7 +18,7 @@ import Progresos from './routes/progresos.routes.js'
 import helmet from "helmet"
 
 const app = express()
-app.use(cors())
+app.use(cors({origin: "*"}))
 app.use(helmet())
 
 const server = createServer(app) // crea el server
