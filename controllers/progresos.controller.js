@@ -38,10 +38,12 @@ function confirmarActividad(req, res) {
         ...req.body.profesional,
         _id: new ObjectId(req.body.profesional._id)
     }
+
+    const frecuenciaHoraria = req.body.frecuenciaHoraria
     const idTratamiento = new ObjectId(req.body.idTratamiento)
     const diagnostico = req.body.diagnostico
-    //console.log(profesional)
-    ProgresosService.confirmarActividad(paciente, profesional, actividad, idTratamiento, diagnostico)
+    console.log(req.body)
+    ProgresosService.confirmarActividad(paciente, profesional, frecuenciaHoraria, actividad, idTratamiento, diagnostico)
     .then((resp) => {
         resp ? res.status(200).json(resp) :
         res.status(404).json({
@@ -80,7 +82,7 @@ function editar (req, res) {
     const nuevaHora = {
         ...req.body.nuevaHora,
         idActividad: new ObjectId(req.body.nuevaHora.idActividad),
-        confirmado: req.body.nuevaHora.confirmado === "true" ? true : false
+        confirmado: req.body.nuevaHora.confirmado
     }
     
     ProgresosService.editar(req.body.idProgreso, nuevaHora)

@@ -138,6 +138,9 @@ function traerRecetasPorId(req, res) {
         }
     })
     .catch(err => res.status(500).json("Ocurrió un error al traer los pedidos: " + err))
+}
+
+function urlFile(req, res) {
 
 }
 
@@ -151,6 +154,7 @@ export {
     traerMisMedicos,
     pedidoReceta,
     //traerRecetas,
-    traerRecetasPorId
+    traerRecetasPorId,
+    urlFile
 
 }

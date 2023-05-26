@@ -8,11 +8,16 @@ async function traerPorUsuarioId (idUsuario) {
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
-        const recordatorios = await db.collection('recordatorios').findOne({"idUsuario": new ObjectId(idUsuario) })
-        return recordatorios
+        const recordatorios = await db.collection('recordatorios').find({"idUsuario": new ObjectId(idUsuario) }).toArray()
+        const recordatoriosMap = recordatorios.map(recordatorio => {
+            return {recordatorios: recordatorio.recordatorios, idTratamiento: recordatorio.idTratamiento}
+        })
+       // console.log(recordatoriosMap)
+        return recordatoriosMap
     })
     .catch(err => console.log(err))
 }
+
 export {
     traerPorUsuarioId
 }

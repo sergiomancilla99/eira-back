@@ -13,5 +13,6 @@ route.patch('/api/pacientes/:id', [autenticacion], PacientesController.editar)
 route.get('/api/pacientes/misMedicos/:id', [autenticacion], PacientesController.traerMisMedicos)
 route.post('/api/pacientes/pedidoReceta', [autenticacion], PacientesController.pedidoReceta)
 route.get('/api/pacientes/misPedidos/:id', [autenticacion], PacientesController.traerRecetasPorId)
+route.post('/api/examenes/urlFile', [autenticacion], PacientesController.urlFile)
 
 export default route
