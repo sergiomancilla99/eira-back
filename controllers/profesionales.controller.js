@@ -92,12 +92,11 @@ function enviarReceta(req, res) {
     ProfesionalesServices.enviarReceta({file, posicion})
     .then((resp) => {
         if (resp) {
-            
-            // PacientesService.traerPorId(paciente)
-            // .then(infoPaciente => {
-            //     MailServices.envioReceta(infoPaciente.email, infoPaciente.nombre)
-            //     res.status(200).json("enviado")
-            // })
+            PacientesService.traerPorId(paciente)
+            .then(infoPaciente => {
+                MailServices.envioReceta(infoPaciente.email, infoPaciente.nombre)
+                res.status(200).json("enviado")
+            })
             res.status(200).json("enviado")
         } else {
             res.status(500).json("Ocurrió un error al enviar la receta.")
@@ -115,11 +114,6 @@ function urlFile(req, res) {
     ProfesionalesServices.urlFile(urlFile, posicion, idMedico)
     .then((resp) => {
         if (resp) {
-            // PacientesService.traerPorId(paciente)
-            // .then(infoPaciente => {
-            //     MailServices.envioReceta(infoPaciente.email, infoPaciente.nombre)
-            //     res.status(200).json("enviado")
-            // })
             res.status(200).json("enviado")
         } else {
             res.status(500).json("Ocurrió un error al enviar la receta.")
