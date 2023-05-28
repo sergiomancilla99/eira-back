@@ -91,6 +91,16 @@ async function crearHistoriaClinica(historia) {
     .catch(err => console.log(err))
 }
 
+async function editarHistoriaClinica(id, historia) {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
+        const historiaEditada = await db.collection('historias-clinicas').updateOne({"paciente": new ObjectId(id)}, {$set: {...historia}})
+        return historiaEditada
+    })
+    .catch(err => console.log(err))
+}
+
 async function traerMisMedicos(id) {
     return client.connect()
     .then(async function() {
@@ -164,5 +174,6 @@ export {
     traerMisMedicos,
     pedidoReceta,
     traerRecetasPorId,
-    urlFile
+    urlFile,
+    editarHistoriaClinica
 }

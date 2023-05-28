@@ -42,8 +42,8 @@ function eliminar (req, res) {
 
 function crearHistoriaClinica(req, res) {
     PacientesServices.crearHistoriaClinica(req.body)
-    .then(function (tratamiento) {
-        tratamiento ?
+    .then(function (historia) {
+        historia ?
         res.status(201).json({
             success: true,
             mensaje: "Se guardó tu historia clinica con éxito"
@@ -51,6 +51,21 @@ function crearHistoriaClinica(req, res) {
         res.status(500).json({
             success: false,
             mensaje: "Hubo un error al guardar, intente de nuevo"
+        })
+    })
+}
+
+function editarHistoriaClinica(req, res) {
+    PacientesServices.editarHistoriaClinica(req.params.id, req.body)
+    .then(function(historia) {
+        historia ?
+        res.status(201).json({
+            success: true,
+            mensaje: "Se guardaron los cambios de tu historia clinica con éxito"
+        }) :
+        res.status(500).json({
+            success: false,
+            mensaje: "Hubo un error al guardar los cambios, intente de nuevo"
         })
     })
 }
@@ -155,6 +170,6 @@ export {
     pedidoReceta,
     //traerRecetas,
     traerRecetasPorId,
-    urlFile
-
+    urlFile,
+    editarHistoriaClinica
 }
