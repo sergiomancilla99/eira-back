@@ -26,6 +26,16 @@ async function traerPorIdPacienteYIdProfesional(id, idProfesional) {
         .catch(err => console.log(err))
 }
 
+async function confirmarActividadNotifcacion () {
+    return client.connect()
+        .then(async function () {
+            const db = client.db('eira')
+            const existeRecordatorio = await db.collection('recordatorios').findOne({ 'idUsuario': new ObjectId(paciente._id), 'idTratamiento': new ObjectId(idTratamiento) })
+
+            
+        })
+}
+
 async function confirmarActividad(paciente, profesional, frecuenciaHoraria, actividad, idTratamiento, diagnostico) {
     return client.connect()
         .then(async function () {

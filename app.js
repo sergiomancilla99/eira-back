@@ -16,6 +16,7 @@ import RecordatoriosRoutes from './routes/recordatorios.route.js'
 import ContactoRoutes from './routes/contacto.routes.js'
 import Progresos from './routes/progresos.routes.js'
 import helmet from "helmet"
+import './services/cronjob.js'
 
 const app = express()
 app.use(cors({origin: "*"}))
