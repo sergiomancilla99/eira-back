@@ -58,6 +58,7 @@ async function confirmarActividad(paciente, profesional, frecuenciaHoraria, acti
                     {
                         idUsuario: paciente._id,
                         idTratamiento: idTratamiento,
+                        idProfesional: profesional._id,
                         recordatorios
                     })
 
