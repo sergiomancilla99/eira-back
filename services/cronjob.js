@@ -27,7 +27,7 @@ Cron.schedule('* * * * * ', async () => {
               "click_action": "https://eira.ar/",
               "icon": "https://i.imgur.com/5zO5cce.png"
             },
-            "to": 'cTFOfVjRu53B92yQkZh0BF:APA91bEKTYJojjgDOy0W409YuMV23jUtmUI0F0F3cQZAHeJENHoGhUB2RoAsARTPTo7TvYWLy_by5Me2G8BC1uHPD4sOl6cK3UhyzMcJ3kpDb0hRPo5NYFR2-iRRVDZLOexLeIMLs5ve'
+            "to": ''
           }
           fetch('https://fcm.googleapis.com/fcm/send', {
             method: 'POST',
