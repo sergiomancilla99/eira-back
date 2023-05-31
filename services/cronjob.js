@@ -5,7 +5,7 @@ import * as PacientesService from './pacientes.service.js'
 Cron.schedule('* * * * * ', async () => {
   console.log('cada min capo')
   const pacientes = await PacientesService.traerTodosNotif()
-  console.log(pacientes)
+  //console.log(pacientes)
   // console.log(pacientes[0].recordatorios)
   //console.log("RECOR", pacientes[0].recordatorios)
   
@@ -27,7 +27,7 @@ Cron.schedule('* * * * * ', async () => {
               "click_action": "https://eira.ar/",
               "icon": "https://i.imgur.com/5zO5cce.png"
             },
-            "to": ''
+            "to": 'cTFOfVjRu53B92yQkZh0BF:APA91bEKTYJojjgDOy0W409YuMV23jUtmUI0F0F3cQZAHeJENHoGhUB2RoAsARTPTo7TvYWLy_by5Me2G8BC1uHPD4sOl6cK3UhyzMcJ3kpDb0hRPo5NYFR2-iRRVDZLOexLeIMLs5ve'
           }
           fetch('https://fcm.googleapis.com/fcm/send', {
             method: 'POST',
