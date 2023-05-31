@@ -95,7 +95,6 @@ function enviarReceta(req, res) {
             PacientesService.traerPorId(paciente)
             .then(infoPaciente => {
                 MailServices.envioReceta(infoPaciente.email, infoPaciente.nombre)
-                res.status(200).json("enviado")
             })
             res.status(200).json("enviado")
         } else {
@@ -108,13 +107,17 @@ function urlFile(req, res) {
     const posicion = req.body.posicion
     const urlFile = req.body.urlFile
     const idMedico = req.body.idMedico
+    const idPaciente = req.body.idPaciente
     //const paciente = req.body.paciente
-    console.log(urlFile)
-    console.log(urlFile)
     ProfesionalesServices.urlFile(urlFile, posicion, idMedico)
     .then((resp) => {
         if (resp) {
-            res.status(200).json("enviado")
+            PacientesService.traerPorId(idPaciente)
+            .then(infoPaciente => {
+                console.log(infoPaciente)
+                MailServices.envioReceta(infoPaciente.email, infoPaciente.nombre)
+                res.status(200).json("enviado")
+            })
         } else {
             res.status(500).json("Ocurrió un error al enviar la receta.")
         }
