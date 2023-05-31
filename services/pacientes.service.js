@@ -8,6 +8,16 @@ async function traerTodos () {
     return client.connect()
     .then(async function () {
         const db = client.db('eira')
+        const pacientes = await db.collection('pacientes').find({"admin": { $ne: true }},{projection: {"password": 0}}).toArray()
+        return pacientes
+    })
+    .catch(err => console.log(err))
+}
+
+async function traerTodosNotif () {
+    return client.connect()
+    .then(async function () {
+        const db = client.db('eira')
         // const pacientes = await db.collection('pacientes').find({"admin": { $ne: true }},{projection: {"password": 0}}).toArray()
         // return pacientes
         const pacientes = await db.collection('pacientes').aggregate([
@@ -192,5 +202,6 @@ export {
     pedidoReceta,
     traerRecetasPorId,
     urlFile,
-    editarHistoriaClinica
+    editarHistoriaClinica,
+    traerTodosNotif
 }

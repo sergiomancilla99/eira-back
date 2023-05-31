@@ -5,6 +5,7 @@ import { autenticacion } from '../middlewares/auth.middleware.js'
 const route = express.Router()
 
 route.get('/api/pacientes', PacientesController.traerTodos)
+route.get('/api/pacientesNotif', PacientesController.traerTodosNotif)
 route.get('/api/pacientes/:id', [autenticacion], PacientesController.traerPorId)
 route.get('/api/pacientes/:id/historia', [autenticacion], PacientesController.traerHistoriaClinica)
 route.delete('/api/pacientes/:id', [autenticacion], PacientesController.eliminar)
