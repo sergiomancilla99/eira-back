@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 import * as PacientesService from './pacientes.service.js'
 import * as ProfesionalService from './profesionales.service.js'
 // */30 * * * * *
-Cron.schedule('*/30 * * * * *', async () => {
+Cron.schedule('* * * * * ', async () => {
   console.log('cada min capo')
   const pacientes = await PacientesService.traerTodosNotif()
   // console.log(paciente.recordatorios)
@@ -23,10 +23,12 @@ Cron.schedule('*/30 * * * * *', async () => {
       const idProfesional = paciente.recordatorios[i].idProfesional.toString()
       const profesional = await ProfesionalService.traerPorId(idProfesional)
       for (const hora in recordatorio) {
-        if (hora === horaActual) {
+        if (hora === "20:25") {
           console.log("HORA ACTUAL:", horaActual)
           const medicamentos = recordatorio[hora]
+          
           for(let medicamento of medicamentos) {
+            console.log("FBNOTI", paciente.fbNotification)
             const body = {
               "data": {
                 "profesional": profesional,
