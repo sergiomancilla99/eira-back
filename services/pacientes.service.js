@@ -34,7 +34,7 @@ async function traerTodosNotif () {
                 as: "recordatorios"
               }
             }
-          ]).toArray();;
+          ]).toArray();
 
           return pacientes
     })

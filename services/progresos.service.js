@@ -112,9 +112,6 @@ async function confirmarActividad(paciente, profesional, frecuenciaHoraria, acti
                 }
 
                 const progresos = await db.collection('progresos').findOneAndUpdate({ "paciente": paciente, "profesional": profesional, "idTratamiento": idTratamiento }, {
-                    $set: {
-                        diagnostico: diagnostico
-                    },
                     $push: { actividades: actividad }
                 },
                     { upsert: true, returnNewDocument: true })
