@@ -50,7 +50,19 @@ async function login({email, password}) {
     })
 }
 
+async function actualizarToken(email) {
+    return client.connect()
+    .then(async function() {
+        const db = client.db('eira')
+        const usuario = await db.collection('pacientes').findOne({email}) || await db.collection('medicos').findOne({email})
+        if(usuario) {
+            return { ...usuario, password:undefined }
+        }
+    })
+}
+
 export {
     crear,
-    login
+    login,
+    actualizarToken
 }

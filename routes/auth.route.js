@@ -5,5 +5,5 @@ const route = express.Router()
 
 route.post('/api/login', UsuariosController.login)
 route.post('/api/registro', UsuariosController.crear)
-
+route.patch('/api/actualizarToken', UsuariosController.actualizarToken)
 export default route
