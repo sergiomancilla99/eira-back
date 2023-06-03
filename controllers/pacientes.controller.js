@@ -13,6 +13,15 @@ function traerTodos (req ,res) {
     })
 }
 
+function traerTodosNotif (req ,res) {
+    PacientesServices.traerTodosNotif()
+    .then(function (pacientes) {
+        pacientes ?
+        res.status(200).json(pacientes) :
+        res.status(404).json({mensaje: "No hay pacientes..." })
+    })
+}
+
 function traerPorId (req ,res) {
     PacientesServices.traerPorId(req.params.id)
     .then(function (paciente) {
@@ -168,7 +177,7 @@ export {
     eliminar,
     traerMisMedicos,
     pedidoReceta,
-    //traerRecetas,
+    traerTodosNotif,
     traerRecetasPorId,
     urlFile,
     editarHistoriaClinica

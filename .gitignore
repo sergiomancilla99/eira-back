@@ -12,7 +12,7 @@ variables.env
 
 # production
 /build
-
+.vscode/
 # misc
 .DS_Store
 .env.local
