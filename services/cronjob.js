@@ -41,8 +41,8 @@ Cron.schedule('*/30 * * * * *', async () => {
                 "icon": "https://eira.ar/eira-icon.png",
                 vibrate: [300, 100, 400]
               },
-              // "to": paciente.fbNotification
-              "to": 'fsJ1tT_A46tpGkqu-kAWmb:APA91bEfmCksbY7iMgL5lZ0zaivUkaQXoLrhVwi7kvuBPbenP1EiRgZ7M1H_oNAU1NQahtiSXw9zeYT-N_7BAkiHyq9QPAm7ox7aoQt6Mhf4Yc0dVMDZJE6U8yxkGOMJy9QXinyFvMKT'
+              "to": paciente.fbNotification
+              // "to": ''
             }
             fetch('https://fcm.googleapis.com/fcm/send', {
               method: 'POST',
