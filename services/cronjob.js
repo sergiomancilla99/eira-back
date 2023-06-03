@@ -3,7 +3,7 @@ import fetch from 'node-fetch'
 import * as PacientesService from './pacientes.service.js'
 import * as ProfesionalService from './profesionales.service.js'
 // */30 * * * * *
-Cron.schedule('* * * * * ', async () => {
+Cron.schedule('*/30 * * * * *', async () => {
   console.log('cada min capo')
   const pacientes = await PacientesService.traerTodosNotif()
   // console.log(paciente.recordatorios)
@@ -23,7 +23,7 @@ Cron.schedule('* * * * * ', async () => {
       const idProfesional = paciente.recordatorios[i].idProfesional.toString()
       const profesional = await ProfesionalService.traerPorId(idProfesional)
       for (const hora in recordatorio) {
-        if (hora === horaActual) {
+        if (hora === "07:41") {
           console.log("HORA ACTUAL:", horaActual)
           const medicamentos = recordatorio[hora]
           
@@ -38,9 +38,11 @@ Cron.schedule('* * * * * ', async () => {
                 "title": hora,
                 "body": medicamento.nombre,
                 "click_action": "https://eira.ar/",
-                "icon": "https://eira.ar/eira-icon.png"
+                "icon": "https://eira.ar/eira-icon.png",
+                vibrate: [300, 100, 400]
               },
-              "to": paciente.fbNotification
+              // "to": paciente.fbNotification
+              "to": 'fsJ1tT_A46tpGkqu-kAWmb:APA91bEfmCksbY7iMgL5lZ0zaivUkaQXoLrhVwi7kvuBPbenP1EiRgZ7M1H_oNAU1NQahtiSXw9zeYT-N_7BAkiHyq9QPAm7ox7aoQt6Mhf4Yc0dVMDZJE6U8yxkGOMJy9QXinyFvMKT'
             }
             fetch('https://fcm.googleapis.com/fcm/send', {
               method: 'POST',
