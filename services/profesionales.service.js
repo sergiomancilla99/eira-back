@@ -25,7 +25,7 @@ async function traerPacientes (idProfesional) {
 }
 
 async function traerPorId(idProfesional) {
-    console.log("serviceee", idProfesional)
+    // console.log("serviceee", idProfesional)
     return client.connect()
     .then( async function () {
         const db = client.db('eira')
