@@ -42,7 +42,7 @@ function confirmarActividad(req, res) {
     const frecuenciaHoraria = req.body.frecuenciaHoraria
     const idTratamiento = new ObjectId(req.body.idTratamiento)
     const diagnostico = req.body.diagnostico
-    console.log(req.body)
+    // console.log(req.body)
     ProgresosService.confirmarActividad(paciente, profesional, frecuenciaHoraria, actividad, idTratamiento, diagnostico)
     .then((resp) => {
         resp ? res.status(200).json(resp) :
