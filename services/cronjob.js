@@ -23,7 +23,7 @@ Cron.schedule('* * * * *', async () => {
       const idProfesional = paciente.recordatorios[i].idProfesional.toString()
       const profesional = await ProfesionalService.traerPorId(idProfesional)
       for (const hora in recordatorio) {
-        if (false) {
+        if (hora === horaActual) {
           console.log("HORA ACTUAL:", horaActual)
           const medicamentos = recordatorio[hora]
           
