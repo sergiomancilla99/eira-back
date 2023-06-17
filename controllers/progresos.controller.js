@@ -39,18 +39,20 @@ function confirmarActividad(req, res) {
         _id: new ObjectId(req.body.profesional._id)
     }
 
+    console.log("aca", actividad)
+
     const frecuenciaHoraria = req.body.frecuenciaHoraria
     const idTratamiento = new ObjectId(req.body.idTratamiento)
     const diagnostico = req.body.diagnostico
     // console.log(req.body)
-    ProgresosService.confirmarActividad(paciente, profesional, frecuenciaHoraria, actividad, idTratamiento, diagnostico)
-    .then((resp) => {
-        resp ? res.status(200).json(resp) :
-        res.status(404).json({
-            response: false,
-            message: "Hubo un error" 
-        })
-    })
+    // ProgresosService.confirmarActividad(paciente, profesional, frecuenciaHoraria, actividad, idTratamiento, diagnostico)
+    // .then((resp) => {
+    //     resp ? res.status(200).json(resp) :
+    //     res.status(404).json({
+    //         response: false,
+    //         message: "Hubo un error" 
+    //     })
+    // })
 }
 
 function negarActividad(req, res) {
