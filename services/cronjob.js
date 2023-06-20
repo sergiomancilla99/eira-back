@@ -35,8 +35,8 @@ Cron.schedule('* * * * *', async () => {
                 "idTratamiento": idTratamiento
               },
               "notification": {
-                "title": hora,
-                "body": medicamento.nombre,
+                "title": "Eira",
+                "body": `Es hora de tomar ${medicamento.nombre}`,
                 "click_action": `https://eira.ar/paciente/confirmacion?idProfesional=${profesional._id}&nombreProfesional=${profesional.nombre}&apellidoProfesional=${profesional.apellido}&medicamento=${medicamento.nombre}&idTratamiento=${idTratamiento}`,
                 "icon": "https://eira.ar/eira-icon.png",
                 vibrate: [300, 100, 400]
