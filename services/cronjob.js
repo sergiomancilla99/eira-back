@@ -23,7 +23,7 @@ Cron.schedule('* * * * *', async () => {
       const idProfesional = paciente.recordatorios[i].idProfesional.toString()
       const profesional = await ProfesionalService.traerPorId(idProfesional)
       for (const hora in recordatorio) {
-        if (hora === horaActual) {
+        if (hora === "11:11") {
           console.log("HORA ACTUAL:", horaActual)
           const medicamentos = recordatorio[hora]
           
@@ -37,7 +37,7 @@ Cron.schedule('* * * * *', async () => {
               "notification": {
                 "title": hora,
                 "body": medicamento.nombre,
-                "click_action": "https://eira.ar/paciente/confirmacion",
+                "click_action": `https://eira.ar/paciente/confirmacion?idProfesional=${profesional._id}&nombreProfesional=${profesional.nombre}&apellidoProfesional=${profesional.apellido}&medicamento=${medicamento.nombre}&idTratamiento=${idTratamiento}`,
                 "icon": "https://eira.ar/eira-icon.png",
                 vibrate: [300, 100, 400]
               },          
