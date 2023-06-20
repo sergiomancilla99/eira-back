@@ -40,6 +40,7 @@ function confirmarActividad(req, res) {
     }
 
     console.log("aca", actividad)
+    console.log("prof", profesional)
 
     const frecuenciaHoraria = req.body.frecuenciaHoraria
     const idTratamiento = new ObjectId(req.body.idTratamiento)
