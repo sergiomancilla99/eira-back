@@ -76,7 +76,7 @@ async function confirmarActividad(paciente, profesional, frecuenciaHoraria, acti
                 const existeMedicamento = Object.values(existeRecordatorio.recordatorios).some(medicamentos => {
                     return medicamentos.some(medicamento => medicamento.nombre === actividad.nombre)
                 });
-                console.log("Ya existe su recordatorio, no hacer nada, solo confirmar para progreso", existeMedicamento)
+                // console.log("Ya existe su recordatorio, no hacer nada, solo confirmar para progreso", existeMedicamento)
 
                 if (!existeMedicamento) {
                     const recordatorios = { ...existeRecordatorio.recordatorios }

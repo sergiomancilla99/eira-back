@@ -89,6 +89,15 @@ async function eliminarPaciente (idProfesional, idPaciente) {
                 { $and: [{'profesional.id_medico': new ObjectId(idProfesional) }, {"id_paciente": new ObjectId(idPaciente)}] }
             )
 
+            await db.collection('progresos').deleteMany(
+                { $and: [{'profesional._id': new ObjectId(idProfesional) }, {"paciente._id": new ObjectId(idPaciente)}] }
+            )
+
+            await db.collection('recordatorios').deleteMany(
+                { $and: [{'idProfesional': new ObjectId(idProfesional) }, {"idUsuario": new ObjectId(idPaciente)}] }
+            )
+
+
             await db.collection('solicitudes').deleteMany({$or: [{ $and : [{'emisor._id': ObjectId(idPaciente)}, {'receptor._id': ObjectId(idProfesional)}]},{ $and : [{'emisor._id': ObjectId(idProfesional)}, {'receptor._id': ObjectId(idPaciente)}]} ]})
 
             const chat = await db.collection('chat').findOne({'usuarios': {$all: [ObjectId(idPaciente), ObjectId(idProfesional)]}})

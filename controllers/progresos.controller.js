@@ -81,7 +81,7 @@ function editar (req, res) {
     const nuevaHora = {
         ...req.body.nuevaHora,
         idActividad: new ObjectId(req.body.nuevaHora.idActividad),
-        confirmado: req.body.nuevaHora.confirmado
+        confirmado: req.body.nuevaHora.confirmado === "true" ? true : false
     }
     
     ProgresosService.editar(req.body.idProgreso, nuevaHora)
