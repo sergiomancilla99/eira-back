@@ -2,6 +2,8 @@ import * as Cron from 'node-cron'
 import fetch from 'node-fetch'
 import * as PacientesService from './pacientes.service.js'
 import * as ProfesionalService from './profesionales.service.js'
+import * as dotenv from 'dotenv'
+dotenv.config({ path: 'variables.env' })
 // */30 * * * * *
 Cron.schedule('* * * * *', async () => {
   console.log('cada min capo')
@@ -44,11 +46,12 @@ Cron.schedule('* * * * *', async () => {
               "to": paciente.fbNotification
               // "to": ''
             }
+            console.log("body", body)
             fetch('https://fcm.googleapis.com/fcm/send', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': "key=AAAALADXWMA:APA91bEDwS8TFdfyx0_XottXr5EgzwhVXqnvwHPCEpeDgf3tqKDVSJ6c_EDpYcZk16eQWLbXcT3dWn6J_BVRdJYqNIFfEGv6TOGsP3V665cxeJbpCZFBSG6ogNZq9Hrdn-bgQRZCy9E3"
+                'Authorization': `key=${process.env.KEY_FIREBASE}`
               },
               body: JSON.stringify(body)
             })
