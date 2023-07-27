@@ -40,7 +40,7 @@ Cron.schedule('* * * * *', async () => {
               "notification": {
                 "title": "Eira",
                 "body": `Es hora de tomar ${medicamento.nombre}`,
-                "click_action": `https://eira.ar/paciente/confirmacion?idProfesional=${idProfesional}&nombreProfesional=${profesional.nombre}&apellidoProfesional=${profesional.apellido}&medicamento=${medicamento.nombre}&idTratamiento=${idTratamiento}`,
+                // "click_action": `https://eira.ar/paciente/confirmacion?idProfesional=${idProfesional}&nombreProfesional=${profesional.nombre}&apellidoProfesional=${profesional.apellido}&medicamento=${medicamento.nombre}&idTratamiento=${idTratamiento}`,
                 "icon": "https://eira.ar/eira-icon.png",
                 vibrate: [300, 100, 400]
               },          
