@@ -31,6 +31,7 @@ Cron.schedule('* * * * *', async () => {
           
           for(let medicamento of medicamentos) {
             console.log("FBNOTI", paciente.fbNotification)
+
             const body = {
               "data": {
                 "profesional": profesional,
@@ -56,6 +57,7 @@ Cron.schedule('* * * * *', async () => {
               body: JSON.stringify(body)
             })
               .then(res => res.json())
+              console.log("acaaaa")
           }
           
         }
