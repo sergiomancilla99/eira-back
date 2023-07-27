@@ -21,7 +21,7 @@ Cron.schedule('* * * * *', async () => {
   for (let i = 0; i < paciente.recordatorios.length; i++) {
     //console.log("acaaa", paciente.recordatorios[i].recordatorios)
       const recordatorio = paciente.recordatorios[i].recordatorios
-      const idTratamiento = paciente.recordatorios[i].idTratamiento
+      const idTratamiento = paciente.recordatorios[i].idTratamiento.toString()
       const idProfesional = paciente.recordatorios[i].idProfesional.toString()
       const profesional = await ProfesionalService.traerPorId(idProfesional)
       for (const hora in recordatorio) {
@@ -34,13 +34,13 @@ Cron.schedule('* * * * *', async () => {
 
             const body = {
               "data": {
-                "profesional": profesional,
+                "profesional": {...profesional, _id: idProfesional},
                 "idTratamiento": idTratamiento
               },
               "notification": {
                 "title": "Eira",
                 "body": `Es hora de tomar ${medicamento.nombre}`,
-                "click_action": `https://eira.ar/paciente/confirmacion?idProfesional=${profesional._id}&nombreProfesional=${profesional.nombre}&apellidoProfesional=${profesional.apellido}&medicamento=${medicamento.nombre}&idTratamiento=${idTratamiento}`,
+                "click_action": `https://eira.ar/paciente/confirmacion?idProfesional=${idProfesional}&nombreProfesional=${profesional.nombre}&apellidoProfesional=${profesional.apellido}&medicamento=${medicamento.nombre}&idTratamiento=${idTratamiento}`,
                 "icon": "https://eira.ar/eira-icon.png",
                 vibrate: [300, 100, 400]
               },          
@@ -57,7 +57,6 @@ Cron.schedule('* * * * *', async () => {
               body: JSON.stringify(body)
             })
               .then(res => res.json())
-              console.log("acaaaa")
           }
           
         }
