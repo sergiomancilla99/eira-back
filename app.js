@@ -15,6 +15,7 @@ import UsuariosRoutes from './routes/usuarios.route.js'
 import RecordatoriosRoutes from './routes/recordatorios.route.js'
 import ContactoRoutes from './routes/contacto.routes.js'
 import Progresos from './routes/progresos.routes.js'
+import Prepagas from './routes/prepagas.route.js'
 import helmet from "helmet"
 import './services/cronjob.js'
 
@@ -87,6 +88,7 @@ app.use('/', RecordatoriosRoutes)
 app.use('/', SolicitudesRoutes)
 app.use('/', ContactoRoutes)
 app.use('/', Progresos)
+app.use('/', Prepagas)
 
 const host = process.env.HOST || '0.0.0.0'
 const puerto = process.env.PORT || 2020
