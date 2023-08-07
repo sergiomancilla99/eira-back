@@ -27,10 +27,10 @@ function configurarTranporter(transporter) {
   transporter.use('compile', hbs({
     viewEngine: {
       extname: '.handlebars',
-      partialsDir: path.resolve('./../eira-back/templates'),
+      partialsDir: path.resolve('./../templates'),
       defaultLayout: false,
     },
-    viewPath: path.resolve('./../eira-back/templates'),
+    viewPath: path.resolve('./../templates'),
     extName: '.handlebars'
   }))
 }
