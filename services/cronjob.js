@@ -2,6 +2,7 @@ import * as Cron from 'node-cron'
 import fetch from 'node-fetch'
 import * as PacientesService from './pacientes.service.js'
 import * as ProfesionalService from './profesionales.service.js'
+import * as RecordatorioService from './recordatiorios.service.js'
 import * as dotenv from 'dotenv'
 dotenv.config({ path: 'variables.env' })
 // */30 * * * * *
@@ -48,6 +49,8 @@ Cron.schedule('* * * * *', async () => {
               // "to": ''
             }
             console.log("body", body)
+           
+
             fetch('https://fcm.googleapis.com/fcm/send', {
               method: 'POST',
               headers: {
@@ -57,6 +60,8 @@ Cron.schedule('* * * * *', async () => {
               body: JSON.stringify(body)
             })
               .then(res => res.json())
+               // guardar la notificacion en el historial, idUsuario y string para el link de la noti
+              RecordatorioService.crearHistorial(paciente._id.toString(), medicamento.nombre, `/paciente/confirmacion?idProfesional=${idProfesional}&nombreProfesional=${profesional.nombre}&apellidoProfesional=${profesional.apellido}&medicamento=${medicamento.nombre}&idTratamiento=${idTratamiento}`)
           }
           
         }
