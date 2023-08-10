@@ -70,6 +70,10 @@ async function confirmarActividad(paciente, profesional, frecuenciaHoraria, acti
                     $push: { actividades: actividad }
                 },
                     { upsert: true, returnNewDocument: true })
+
+                 await db.collection('historial-notificaciones').insertOne({ "idUsuario": new ObjectId(paciente._id),  "notificaciones": [] })
+                   
+                
                 return existeRecordatorio
             } else {
                 // ya existe documento, entocnes agrego recordatorio. Si ya existe el recordatorio, no hacer nada, de lo contrario agregarlo
